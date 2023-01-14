@@ -11,7 +11,7 @@ model.load("xgb_model.json")
 @st.cache
 
 #define the prediction function
-def predict(carat, cut, color, clarity, depth, table, x, y, z)
+def predict(carat, cut, color, clarity, depth, table, x, y, z):
     #predict the price of the carat
     if cut == "Fair":
         cut = 0
@@ -56,7 +56,7 @@ def predict(carat, cut, color, clarity, depth, table, x, y, z)
     elif clarity == "IF":
         clarity = 7
 
-    prediction = model.predict(pd.DataFrame([carat, cut, color, clarity, depth, table, x, y, z], columns = ["carat", "cut", "color", "depth", "table", "x", "y", "z"]))
+    prediction = model.predict(pd.DataFrame([[carat, cut, color, clarity, depth, table, x, y, z]], columns = ["carat", "cut", "color", "clarity", "depth", "table", "x", "y", "z"]))
     return prediction
 
 st.title("Diamond Price Predictior")
